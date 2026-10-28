@@ -1,0 +1,17 @@
+{
+  "name": "ieaware-home",
+  "version": "1.0.0",
+  "private": true,
+  "description": "IE Aware links-only homepage on Cloudflare Workers Static Assets",
+  "scripts": {
+    "dev": "wrangler dev",
+    "check": "wrangler deploy --dry-run",
+    "deploy": "wrangler deploy"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "wrangler": "4.154.0"
+  }
+}
