@@ -1,20 +1,62 @@
 :root {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #202124;
-  background: #fafafa;
+  color: #f5f5f5;
+  background: #000;
+  color-scheme: dark;
   line-height: 1.6;
+  /* Original Inland Empire map, supplied by the site owner. */
+  --homepage-map: url("/images/inland-empire-wireframe.png");
 }
 * { box-sizing: border-box; }
-body { margin: 0; }
-main { width: min(100% - 2.5rem, 44rem); margin: clamp(3rem, 10vh, 7rem) auto; }
-header { margin-bottom: 3rem; }
-.region { color: #555; font-size: .875rem; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  isolation: isolate;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: #000;
+  background-image: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .75)), var(--homepage-map);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+main {
+  width: min(100% - 2.5rem, 30rem);
+  margin: 0 auto;
+  padding: clamp(3rem, 10vh, 7rem) 0;
+}
+header {
+  margin-bottom: 2rem;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  border: 1px solid #643131;
+  border-radius: .75rem;
+  background: rgba(0, 0, 0, .88);
+}
+.region { color: #ffaaaa; font-size: .875rem; }
 h1 { margin: .25rem 0; font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1.15; letter-spacing: -.035em; }
-header > p:last-child { color: #555; }
-h2 { font-size: 1.125rem; margin-bottom: 1rem; }
+header > p:last-child { color: #d1d1d1; }
+h2 { width: fit-content; padding: .25rem .75rem; border-radius: .25rem; background: #000; font-size: 1.125rem; margin-bottom: 1rem; }
 .cities { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
-.cities a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem; border: 1px solid #c8c8c8; border-radius: .5rem; color: inherit; background: #fff; text-decoration: none; overflow-wrap: anywhere; }
-.cities a:hover { border-color: #202124; }
-.cities a:hover strong { text-decoration: underline; }
-.cities a:focus-visible { outline: 3px solid #2457c5; outline-offset: 4px; }
-.city { display: block; font-size: .875rem; color: #555; }
+.cities a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem; border: 1px solid #643131; border-radius: .5rem; color: inherit; background: rgba(0, 0, 0, .92); text-decoration: none; overflow-wrap: anywhere; }
+.cities a[href]:hover { border-color: #ff7777; background: #200909; }
+.cities a[href]:hover strong { text-decoration: underline; }
+.cities a:focus-visible { outline: 3px solid #ffaaaa; outline-offset: 4px; }
+.cities a[aria-disabled="true"] { color: #b8b8b8; border-color: #444; }
+.city { display: block; font-size: .875rem; color: #d1d1d1; }
+.mobile-map { display: none; }
+@media (max-width: 30rem) {
+  main { width: calc(100% - 2rem); padding-block: 2rem; }
+  header { margin-bottom: 1.5rem; }
+  /* Show the full map in the page flow between the header and city links. */
+  body::before { background-image: none; }
+  .mobile-map { display: block; width: 100%; height: auto; margin: 0 0 1.5rem; }
+}
+
+
+
