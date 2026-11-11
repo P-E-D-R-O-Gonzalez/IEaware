@@ -112,4 +112,11 @@ h2 { width: fit-content; padding: .25rem .75rem; border-radius: .25rem; backgrou
   text-decoration: none;
 }
 .site-brand:focus-visible { outline: 3px solid #ffaaaa; outline-offset: 4px; }
-.site-logo { display: block; width: 100%; height: auto; filter: invert(1) hue-rotate(180deg); }
+/* Use the white artwork directly; preserve smooth scaling on high-density screens. */
+.site-logo {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  image-rendering: auto;
+}
